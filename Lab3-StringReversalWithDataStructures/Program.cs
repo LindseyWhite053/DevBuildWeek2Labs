@@ -1,44 +1,68 @@
 ﻿//Write a program that will take in a word from the user and reverse the inputted word.
 
 //Request and take user input 
-Console.Write("Enter the word you would like to see reversed: ");
-string word = Console.ReadLine();
+Console.Write("Enter the phrase you would like to see reversed: ");
+string input = Console.ReadLine();
 
-//Call the method for reversing your string passing in a string 
-string revWord = Reverse(word);
+//check if there input is a word or sentence
+if (input.Contains(" "))
+{
+    string revSentence = ReverseSentence(input);
+
+    Console.WriteLine($"Your sentence with reversed words is: ");
+    Console.WriteLine(revSentence);
+}
+else
+{
+    string revWord = ReverseWord(input);
+
+    Console.WriteLine($"Your word reversed is {revWord}");
+}
+
 
 //Method for reversing your string which returns a string
-static string Reverse(string word)
+static string ReverseWord(string baseWord)
 {
-    string newString = "";
+    string newWord = "";
     
     //Instantiate a stack
     Stack<char> stackedWord = new Stack<char>();
 
     //Use the stack to store characters
-    foreach (char c in word)
+    foreach (char c in baseWord)
     {
         stackedWord.Push(c);
     }
 
     //Use the stack to retrieve characters in reverse order
-    for (int i = 0; i < word.Length; i++)
+    for (int i = 0; i < baseWord.Length; i++)
     {      
-        newString = newString + stackedWord.Pop();
+        newWord = newWord + stackedWord.Pop();
     }
       
-    return newString;
+    return newWord;
 }
 
-//Display the reversed string in the console (1 point)
-Console.WriteLine($"Your word reversed is {revWord}");
 
+//Method for reversing each word within a string
+static string ReverseSentence(string baseString)
+{
+    string newSentence = "";
 
+    //sentence into words
+    string[] words = baseString.Split();
 
-//Extra Challenge: Consider cases where the user does not enter a single word but a sentence instead.
-//Do not reverse the entire sentence, instead reverse each word in the sentence, keeping the words in their original positions.
+    //for each word in the array reverse the letters 
+    foreach (string word in words)
+    {
+        string newWord = ReverseWord(word);
 
+        // Create a new sentence with the newly reversed words
+        newSentence = newSentence + $"{newWord} ";
+    }
 
-//Extra Challenge: Validate user input: make sure the user is only entering words and not symbols or numbers.
+    return newSentence;
+}
+
 
 
