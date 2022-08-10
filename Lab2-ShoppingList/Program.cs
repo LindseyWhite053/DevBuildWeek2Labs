@@ -1,6 +1,6 @@
 ﻿Console.WriteLine("Welcome to your shopping list builder. \n");
 decimal total = 0;
-int itemNum = 1;
+
 
 //Display at least 8 item names and prices fr a menu 
 Dictionary<string, decimal> menu = new Dictionary<string, decimal>();
@@ -39,7 +39,7 @@ do
     {
 
         //Store the name of the items the customer ordered to the list 
-        //Add item name and price to the relevant List if it does (1 point)
+        //Add item name and price to the relevant List if it does 
         Console.WriteLine($"Added {input} to your cart.");
         list.Add($"{input} - {menu[input]}");
 
